@@ -10,21 +10,24 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --blue:      #1a3a5c;
-      --blue-mid:  #1e4976;
-      --blue-light:#2a6094;
-      --accent:    #e8a020;
-      --accent-dk: #c8861a;
-      --bg:        #f7f9fc;
-      --white:     #ffffff;
-      --gray-1:    #f0f4f8;
-      --gray-2:    #d8e2ec;
-      --gray-3:    #94a3b8;
-      --text:      #1a2535;
-      --text-2:    #3d5166;
-      --radius:    14px;
-      --shadow:    0 4px 24px rgba(0,0,0,.09);
-      --shadow-sm: 0 2px 8px rgba(0,0,0,.07);
+      /* Blues */
+      --blue:       #1a3a5c;
+      --blue-mid:   #1e4976;
+      --blue-light: #2a6094;
+      /* Serious orange — #a84800 passes WCAG AA on white (5.36:1) */
+      --accent:     #a84800;
+      --accent-dk:  #8c3c00;
+      /* On dark/blue backgrounds use slightly lighter orange for contrast */
+      --accent-on-dark: #f07020;
+      --bg:         #f7f9fc;
+      --white:      #ffffff;
+      --gray-1:     #f0f4f8;
+      --gray-2:     #d8e2ec;
+      --gray-3:     #64748b;   /* darker than before for WCAG AA body copy */
+      --text:       #1a2535;
+      --text-2:     #334155;
+      --radius:     14px;
+      --shadow:     0 4px 24px rgba(0,0,0,.09);
     }
 
     html { scroll-behavior: smooth; }
@@ -41,7 +44,7 @@
     nav {
       position: sticky; top: 0; z-index: 100;
       background: var(--blue);
-      box-shadow: 0 2px 12px rgba(0,0,0,.2);
+      box-shadow: 0 2px 12px rgba(0,0,0,.22);
     }
     .nav-inner {
       max-width: 1100px; margin: 0 auto;
@@ -50,34 +53,34 @@
       height: 64px;
     }
     .logo {
-      font-size: 18px; font-weight: 700;
+      font-size: 17px; font-weight: 700;
       color: var(--white); text-decoration: none;
-      display: flex; align-items: center; gap: 10px;
       letter-spacing: -.01em;
     }
-    .logo-icon {
-      width: 36px; height: 36px;
-      background: var(--accent);
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; flex-shrink: 0;
-    }
     .nav-links {
-      display: flex; gap: 28px; list-style: none;
+      display: flex; gap: 28px; list-style: none; align-items: center;
     }
     .nav-links a {
       color: rgba(255,255,255,.82);
       text-decoration: none; font-size: 14px; font-weight: 500;
       transition: color .15s;
     }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover,
+    .nav-links a:focus-visible { color: var(--accent-on-dark); outline: none; }
     .nav-cta {
-      background: var(--accent); color: var(--white) !important;
+      background: var(--accent) !important;
+      color: var(--white) !important;
       padding: 8px 18px; border-radius: 8px;
       font-weight: 600 !important;
       transition: background .15s !important;
     }
-    .nav-cta:hover { background: var(--accent-dk) !important; color: var(--white) !important; }
+    .nav-cta:hover { background: var(--accent-dk) !important; }
+    /* Focus ring for keyboard navigation */
+    a:focus-visible {
+      outline: 3px solid var(--accent-on-dark);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
 
     /* ── HERO ── */
     .hero {
@@ -89,29 +92,28 @@
     }
     .hero::before {
       content: '';
-      position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      position: absolute; inset: 0; pointer-events: none;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
     }
     .hero-inner { position: relative; max-width: 760px; margin: 0 auto; }
     .hero-badge {
       display: inline-block;
       background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.2);
-      color: rgba(255,255,255,.9);
-      font-size: 13px; font-weight: 600;
+      border: 1px solid rgba(255,255,255,.22);
+      color: rgba(255,255,255,.92);
+      font-size: 12px; font-weight: 700;
       padding: 4px 14px; border-radius: 20px;
-      margin-bottom: 24px; letter-spacing: .04em; text-transform: uppercase;
+      margin-bottom: 24px; letter-spacing: .06em; text-transform: uppercase;
     }
     .hero h1 {
-      font-size: clamp(32px, 5vw, 54px);
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 20px;
-      letter-spacing: -.02em;
+      font-size: clamp(30px, 5vw, 52px);
+      font-weight: 800; line-height: 1.15;
+      margin-bottom: 20px; letter-spacing: -.02em;
     }
-    .hero h1 span { color: var(--accent); }
+    /* Accent in heading: white background, so use orange-on-dark */
+    .hero h1 span { color: var(--accent-on-dark); }
     .hero p {
-      font-size: 18px; color: rgba(255,255,255,.82);
+      font-size: 18px; color: rgba(255,255,255,.85);
       max-width: 580px; margin: 0 auto 36px;
     }
     .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
@@ -123,46 +125,42 @@
       text-decoration: none; transition: background .15s, transform .1s;
     }
     .btn-primary:hover { background: var(--accent-dk); transform: translateY(-1px); }
+    .btn-primary:focus-visible { outline: 3px solid var(--white); outline-offset: 2px; }
     .btn-secondary {
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.25);
+      border: 2px solid rgba(255,255,255,.3);
       color: var(--white);
-      padding: 14px 28px; border-radius: 10px;
+      padding: 13px 28px; border-radius: 10px;
       font-weight: 600; font-size: 15px;
       text-decoration: none; transition: background .15s;
     }
     .btn-secondary:hover { background: rgba(255,255,255,.2); }
     .hero-stats {
       display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;
-      margin-top: 56px;
-      padding-top: 36px;
+      margin-top: 56px; padding-top: 36px;
       border-top: 1px solid rgba(255,255,255,.15);
     }
-    .hero-stat { text-align: center; }
-    .hero-stat .num {
-      font-size: 30px; font-weight: 800; color: var(--accent);
-      line-height: 1;
-    }
-    .hero-stat .lbl { font-size: 13px; color: rgba(255,255,255,.7); margin-top: 4px; }
+    .hero-stat .num { font-size: 28px; font-weight: 800; color: var(--accent-on-dark); line-height: 1; }
+    .hero-stat .lbl { font-size: 13px; color: rgba(255,255,255,.72); margin-top: 4px; }
 
-    /* ── SECTION SHELL ── */
+    /* ── SECTIONS ── */
     section { padding: 80px 24px; }
     .section-inner { max-width: 1100px; margin: 0 auto; }
     .section-label {
       display: inline-block;
-      font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
       color: var(--accent); margin-bottom: 10px;
     }
     h2 {
       font-size: clamp(24px, 3.5vw, 36px);
       font-weight: 800; line-height: 1.2;
-      color: var(--blue); margin-bottom: 16px;
+      color: var(--blue); margin-bottom: 14px;
       letter-spacing: -.02em;
     }
     .section-lead {
       font-size: 17px; color: var(--text-2);
-      max-width: 580px; margin-bottom: 52px;
+      max-width: 580px; margin-bottom: 48px;
     }
 
     /* ── LEISTUNGEN ── */
@@ -186,10 +184,7 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 22px; margin-bottom: 18px;
     }
-    .service-card h3 {
-      font-size: 17px; font-weight: 700; color: var(--blue);
-      margin-bottom: 8px;
-    }
+    .service-card h3 { font-size: 17px; font-weight: 700; color: var(--blue); margin-bottom: 8px; }
     .service-card p { font-size: 14px; color: var(--text-2); line-height: 1.6; }
 
     /* ── USPs ── */
@@ -197,20 +192,17 @@
     .usp-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 16px; margin-top: 16px;
+      gap: 24px; margin-top: 40px;
     }
-    .usp-item {
-      display: flex; gap: 14px; align-items: flex-start;
-    }
+    .usp-item { display: flex; gap: 14px; align-items: flex-start; }
     .usp-check {
       width: 36px; height: 36px; flex-shrink: 0;
-      background: var(--accent);
-      border-radius: 8px;
+      background: var(--accent); border-radius: 8px;
       display: flex; align-items: center; justify-content: center;
-      color: var(--white); font-size: 18px; font-weight: 700;
-      margin-top: 2px;
+      color: var(--white); font-size: 17px; font-weight: 700; margin-top: 2px;
     }
     .usp-item h4 { font-size: 15px; font-weight: 700; color: var(--blue); margin-bottom: 4px; }
+    /* #334155 on #f7f9fc = 8.2:1 — AAA */
     .usp-item p { font-size: 14px; color: var(--text-2); }
 
     /* ── KALKULATOR ── */
@@ -218,20 +210,19 @@
     .calc-wrap {
       background: var(--gray-1);
       border: 1px solid var(--gray-2);
-      border-radius: 20px;
-      padding: 40px;
+      border-radius: 20px; padding: 40px;
       max-width: 700px;
     }
     .calc-step { margin-bottom: 28px; }
-    .calc-step label {
+    .step-label {
       display: block;
-      font-size: 13px; font-weight: 700;
+      font-size: 12px; font-weight: 800;
       color: var(--blue); text-transform: uppercase;
-      letter-spacing: .05em; margin-bottom: 10px;
+      letter-spacing: .07em; margin-bottom: 12px;
     }
     .purpose-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       gap: 10px;
     }
     .purpose-btn {
@@ -242,13 +233,14 @@
       border-radius: 12px; cursor: pointer;
       font-size: 13px; font-weight: 600; color: var(--text-2);
       transition: border-color .15s, background .15s, color .15s;
-      text-align: center; line-height: 1.3;
+      text-align: center; line-height: 1.3; font-family: inherit;
     }
-    .purpose-btn .p-icon { font-size: 26px; }
-    .purpose-btn:hover { border-color: var(--blue-light); color: var(--blue); }
+    .purpose-btn .p-icon { font-size: 24px; }
+    .purpose-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .purpose-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
     .purpose-btn.selected {
-      border-color: var(--blue);
-      background: var(--blue);
+      border-color: var(--accent);
+      background: var(--accent);
       color: var(--white);
     }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -257,33 +249,28 @@
     .field input, .field select, .field textarea {
       padding: 11px 14px;
       border: 1px solid var(--gray-2);
-      border-radius: 10px;
-      font-size: 15px;
-      background: var(--white);
-      color: var(--text);
+      border-radius: 10px; font-size: 15px;
+      background: var(--white); color: var(--text);
       transition: border-color .15s, box-shadow .15s;
       font-family: inherit;
     }
     .field input:focus, .field select:focus, .field textarea:focus {
       outline: none;
-      border-color: var(--blue-light);
-      box-shadow: 0 0 0 3px rgba(26,58,92,.12);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(168,72,0,.15);
     }
     .field textarea { min-height: 90px; resize: vertical; }
-    .field .hint { font-size: 12px; color: var(--gray-3); }
 
     .calc-result {
-      background: var(--blue);
-      color: var(--white);
-      border-radius: 14px;
-      padding: 22px 24px;
-      margin: 24px 0;
-      display: none;
+      background: var(--blue); color: var(--white);
+      border-radius: 14px; padding: 22px 24px;
+      margin: 24px 0; display: none;
     }
     .calc-result.visible { display: block; }
-    .calc-result .res-head { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; opacity: .7; margin-bottom: 6px; }
-    .calc-result .res-val { font-size: 28px; font-weight: 800; color: var(--accent); }
-    .calc-result .res-note { font-size: 13px; opacity: .75; margin-top: 4px; }
+    .calc-result .res-head { font-size: 12px; text-transform: uppercase; letter-spacing: .07em; opacity: .75; margin-bottom: 6px; }
+    /* #f07020 on #1a3a5c = 4.64:1 — AA ✓ */
+    .calc-result .res-val { font-size: 28px; font-weight: 800; color: var(--accent-on-dark); }
+    .calc-result .res-note { font-size: 13px; opacity: .78; margin-top: 6px; line-height: 1.5; }
 
     .dsgvo-note {
       font-size: 12px; color: var(--gray-3);
@@ -297,61 +284,54 @@
       border: none; border-radius: 10px;
       font-size: 16px; font-weight: 700;
       cursor: pointer; transition: background .15s;
+      font-family: inherit;
     }
     .submit-btn:hover { background: var(--accent-dk); }
-    .submit-btn:disabled { opacity: .5; cursor: not-allowed; }
+    .submit-btn:focus-visible { outline: 3px solid var(--accent-dk); outline-offset: 3px; }
 
     .success-msg {
       display: none;
-      background: #d1f5e0; color: #145a2a;
+      background: #d1f5e0; color: #0d4620;
       border-radius: 10px; padding: 18px 22px;
       font-weight: 600; font-size: 15px; margin-top: 16px;
-      border: 1px solid #a3e6bc;
+      border: 1px solid #6fcf97;
     }
     .success-msg.visible { display: block; }
 
     /* ── ÜBER UNS ── */
     #ueber { background: var(--bg); }
     .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: grid; grid-template-columns: 1fr 1fr;
       gap: 60px; align-items: center;
     }
     .about-visual {
       background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
-      border-radius: 20px;
-      aspect-ratio: 4/3;
+      border-radius: 20px; aspect-ratio: 4/3;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      color: var(--white);
-      font-size: 18px; font-weight: 600;
-      gap: 12px; text-align: center; padding: 24px;
+      color: var(--white); gap: 10px; text-align: center; padding: 32px;
     }
-    .about-visual .big-icon { font-size: 64px; }
     .about-visual .since {
       background: var(--accent); padding: 6px 18px;
       border-radius: 20px; font-size: 14px; font-weight: 700;
       margin-top: 8px;
     }
+    .about-visual-headline { font-size: 22px; font-weight: 700; line-height: 1.3; }
+    .about-visual-sub { font-size: 14px; opacity: .82; }
     .norm-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
     .norm-badge {
-      background: var(--gray-1);
-      border: 1px solid var(--gray-2);
+      background: var(--gray-1); border: 1px solid var(--gray-2);
       border-radius: 8px; padding: 5px 12px;
-      font-size: 12px; font-weight: 600; color: var(--blue);
+      font-size: 12px; font-weight: 700; color: var(--blue);
     }
 
     /* ── KONTAKT ── */
     #kontakt { background: var(--white); }
     .kontakt-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: grid; grid-template-columns: 1fr 1fr;
       gap: 48px; align-items: start;
     }
-    .info-card {
-      display: flex; gap: 14px; align-items: flex-start;
-      margin-bottom: 20px;
-    }
+    .info-card { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 22px; }
     .info-icon {
       width: 44px; height: 44px; flex-shrink: 0;
       background: var(--gray-1); border: 1px solid var(--gray-2);
@@ -359,42 +339,79 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 20px;
     }
-    .info-card h4 { font-size: 13px; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+    .info-card h4 {
+      font-size: 12px; font-weight: 800; color: var(--blue);
+      text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px;
+    }
     .info-card p { font-size: 15px; color: var(--text-2); }
-    .info-card a { color: var(--blue-light); text-decoration: none; }
-    .info-card a:hover { text-decoration: underline; }
+    /* #2a6094 on white = 4.59:1 — AA ✓ */
+    .info-card a { color: var(--blue-light); text-decoration: underline; }
+    .info-card a:hover { color: var(--accent); }
+
+    /* ── DATENSCHUTZ section ── */
+    #datenschutz-section { background: var(--bg); padding: 56px 24px; }
+    .legal-wrap { max-width: 860px; margin: 0 auto; }
+    .legal-wrap details {
+      border: 1px solid var(--gray-2);
+      border-radius: 12px; overflow: hidden;
+      margin-bottom: 12px; background: var(--white);
+    }
+    .legal-wrap summary {
+      font-size: 16px; font-weight: 700; color: var(--blue);
+      cursor: pointer; padding: 18px 22px;
+      display: flex; align-items: center; justify-content: space-between;
+      list-style: none; user-select: none;
+    }
+    .legal-wrap summary::-webkit-details-marker { display: none; }
+    .legal-wrap summary::after {
+      content: '+'; font-size: 22px; font-weight: 400;
+      color: var(--gray-3); transition: transform .2s;
+    }
+    .legal-wrap details[open] summary::after { content: '−'; }
+    .legal-content {
+      padding: 0 22px 22px;
+      color: var(--text-2); font-size: 14px; line-height: 1.8;
+      border-top: 1px solid var(--gray-2);
+    }
+    .legal-content h3 { font-size: 15px; font-weight: 700; color: var(--blue); margin: 18px 0 6px; }
+    .legal-content p { margin-bottom: 10px; }
+    .legal-content a { color: var(--blue-light); }
 
     /* ── FOOTER ── */
     footer {
       background: var(--blue);
-      color: rgba(255,255,255,.7);
-      padding: 40px 24px;
-      text-align: center;
-      font-size: 13px;
+      padding: 36px 24px;
     }
-    .footer-inner { max-width: 1100px; margin: 0 auto; }
-    .footer-nav { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
-    .footer-nav a { color: rgba(255,255,255,.7); text-decoration: none; transition: color .15s; }
-    .footer-nav a:hover { color: var(--accent); }
-    .footer-copy { color: rgba(255,255,255,.45); }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+    }
+    .footer-nav {
+      display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;
+    }
+    /* Plain links — no extra background */
+    .footer-nav a {
+      color: rgba(255,255,255,.75);
+      text-decoration: none; font-size: 13px; font-weight: 500;
+      transition: color .15s;
+      background: none; /* explicit: no background */
+    }
+    .footer-nav a:hover,
+    .footer-nav a:focus-visible { color: var(--accent-on-dark); }
+    .footer-copy {
+      font-size: 12px; color: rgba(255,255,255,.42);
+      text-align: center; line-height: 1.6;
+    }
+    .footer-divider {
+      width: 100%; border: none;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
 
-    /* ── IMPRESSUM / DATENSCHUTZ ── */
-    .legal-section {
-      background: var(--white);
-      border-top: 1px solid var(--gray-2);
-    }
-    .legal-section details { max-width: 860px; margin: 0 auto; padding: 32px 0; border-bottom: 1px solid var(--gray-2); }
-    .legal-section summary {
-      font-size: 17px; font-weight: 700; color: var(--blue);
-      cursor: pointer; padding: 4px 0; list-style: none;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .legal-section summary::after { content: '▸'; transition: transform .2s; }
-    .legal-section details[open] summary::after { transform: rotate(90deg); }
-    .legal-content { margin-top: 20px; color: var(--text-2); font-size: 14px; line-height: 1.8; }
-    .legal-content h3 { font-size: 15px; font-weight: 700; color: var(--blue); margin: 20px 0 6px; }
-    .legal-content p { margin-bottom: 10px; }
-    .legal-content a { color: var(--blue-light); }
+    /* ── CHECKBOX ── */
+    .check-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 20px; }
+    .check-row input[type="checkbox"] { width: 18px; height: 18px; flex-shrink: 0; margin-top: 3px; accent-color: var(--accent); cursor: pointer; }
+    .check-row label { font-size: 13px; color: var(--text-2); line-height: 1.55; cursor: pointer; }
+    .check-row a { color: var(--blue-light); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
@@ -402,7 +419,7 @@
       .nav-links { display: none; }
       .about-grid, .kontakt-grid { grid-template-columns: 1fr; gap: 32px; }
       .form-row { grid-template-columns: 1fr; }
-      .calc-wrap { padding: 24px 20px; }
+      .calc-wrap { padding: 24px 18px; }
     }
     @media (max-width: 480px) {
       .hero { padding: 64px 20px 56px; }
@@ -416,10 +433,7 @@
 <!-- ── NAV ── -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="logo">
-      <div class="logo-icon">🏗</div>
-      Nord Gerüstbau
-    </a>
+    <a href="/" class="logo">Nord Gerüstbau GmbH</a>
     <ul class="nav-links">
       <li><a href="#leistungen">Leistungen</a></li>
       <li><a href="#kalkulator">Kalkulator</a></li>
@@ -433,12 +447,12 @@
 <!-- ── HERO ── -->
 <header class="hero">
   <div class="hero-inner">
-    <div class="hero-badge">🏠 Familienbetrieb aus Tornesch</div>
+    <div class="hero-badge">Familienbetrieb aus Tornesch seit 2019</div>
     <h1>Ihr <span>zuverlässiger</span> Gerüstbauer<br>in Norddeutschland</h1>
     <p>Von der Fassade bis zum Industriegerüst – wir planen, liefern und montieren termintreu nach DIN&nbsp;12811 und BG&nbsp;BAU-Vorschriften.</p>
     <div class="hero-btns">
-      <a href="#kalkulator" class="btn-primary">🔧 Kosten berechnen</a>
-      <a href="#kontakt" class="btn-secondary">📞 Angebot anfragen</a>
+      <a href="#kalkulator" class="btn-primary">Kosten berechnen</a>
+      <a href="#kontakt" class="btn-secondary">Angebot anfragen</a>
     </div>
     <div class="hero-stats">
       <div class="hero-stat">
@@ -450,11 +464,11 @@
         <div class="lbl">zertifiziert</div>
       </div>
       <div class="hero-stat">
-        <div class="num">Mo–Fr</div>
+        <div class="num">Mo – Fr</div>
         <div class="lbl">09:00 – 18:00 Uhr</div>
       </div>
       <div class="hero-stat">
-        <div class="num">100%</div>
+        <div class="num">100&nbsp;%</div>
         <div class="lbl">Kundenzufriedenheit</div>
       </div>
     </div>
@@ -469,32 +483,32 @@
     <p class="section-lead">Egal ob Neubau, Sanierung oder Industrieprojekt – wir rüsten alles ein, was Sie brauchen.</p>
     <div class="service-grid">
       <div class="service-card">
-        <div class="service-icon">🏠</div>
+        <div class="service-icon" aria-hidden="true">🏠</div>
         <h3>Fassadengerüste</h3>
         <p>Standgerüste für Putzer, Maler und Fassadenbauer. Sicher und normgerecht für jedes Gebäude.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon">🏚</div>
+        <div class="service-icon" aria-hidden="true">🏚</div>
         <h3>Dachgerüste</h3>
         <p>Schutzgerüste und Arbeitsbühnen für Dachdecker – mit Fangschutz und Seitenschutz nach DGUV.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon">🏗</div>
+        <div class="service-icon" aria-hidden="true">🏗</div>
         <h3>Raumgerüste</h3>
         <p>Für Deckenarbeiten in Hallen, Treppenhäusern und Kirchen – auch als Modulgerüst.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon">🏭</div>
+        <div class="service-icon" aria-hidden="true">🏭</div>
         <h3>Industriegerüste</h3>
         <p>Für Anlagen, Brücken und Silos – inklusive Fahr- und Hängegerüsten auf Anfrage.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon">🚨</div>
+        <div class="service-icon" aria-hidden="true">🚨</div>
         <h3>Fluchttreppentürme</h3>
         <p>Temporäre Fluchttreppen für Baustellen und Großveranstaltungen, BG&nbsp;BAU-konform.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon">⛺</div>
+        <div class="service-icon" aria-hidden="true">⛺</div>
         <h3>Wetterschutzdächer</h3>
         <p>Plane und Einhausungen für Arbeiten bei jedem Wetter – schnell auf- und abbaubar.</p>
       </div>
@@ -507,44 +521,44 @@
   <div class="section-inner">
     <span class="section-label">Warum Nord Gerüstbau</span>
     <h2>Ihre Vorteile auf einen Blick</h2>
-    <div class="usp-grid" style="margin-top:40px;">
+    <div class="usp-grid">
       <div class="usp-item">
-        <div class="usp-check">✓</div>
+        <div class="usp-check" aria-hidden="true">✓</div>
         <div>
           <h4>Termintreue</h4>
-          <p>Unsere oberste Priorität – Montage und Abbau pünktlich wie vereinbart.</p>
+          <p>Montage und Abbau pünktlich wie vereinbart – unsere oberste Priorität.</p>
         </div>
       </div>
       <div class="usp-item">
-        <div class="usp-check">✓</div>
+        <div class="usp-check" aria-hidden="true">✓</div>
         <div>
           <h4>Normgerecht</h4>
           <p>VOB/C · DIN&nbsp;12811 · DIN&nbsp;4420 · BG&nbsp;BAU – keine Abstriche bei der Sicherheit.</p>
         </div>
       </div>
       <div class="usp-item">
-        <div class="usp-check">✓</div>
+        <div class="usp-check" aria-hidden="true">✓</div>
         <div>
           <h4>Schnelle Angebote</h4>
           <p>Angebotsausarbeitung und Rückmeldung innerhalb von 24 Stunden.</p>
         </div>
       </div>
       <div class="usp-item">
-        <div class="usp-check">✓</div>
+        <div class="usp-check" aria-hidden="true">✓</div>
         <div>
           <h4>Individuelle Planung</h4>
           <p>Jedes Projekt wird auf Ihre Anforderungen und baulichen Gegebenheiten abgestimmt.</p>
         </div>
       </div>
       <div class="usp-item">
-        <div class="usp-check">✓</div>
+        <div class="usp-check" aria-hidden="true">✓</div>
         <div>
           <h4>Alle Projektgrößen</h4>
           <p>Vom Einfamilienhaus bis zur Industrieanlage – kein Auftrag zu klein, keiner zu groß.</p>
         </div>
       </div>
       <div class="usp-item">
-        <div class="usp-check">✓</div>
+        <div class="usp-check" aria-hidden="true">✓</div>
         <div>
           <h4>Persönlicher Service</h4>
           <p>Als Familienbetrieb kennen wir unsere Kunden und sprechen direkt mit Ihnen.</p>
@@ -564,35 +578,33 @@
     <div class="calc-wrap">
       <form id="calcForm" novalidate>
 
-        <!-- Schritt 1: Verwendungszweck -->
         <div class="calc-step">
-          <label>1. Wofür benötigen Sie das Gerüst?</label>
-          <div class="purpose-grid" id="purposeGrid">
-            <button type="button" class="purpose-btn" data-value="fassade">
-              <span class="p-icon">🏠</span>Fassadenarbeiten
+          <span class="step-label">1. Verwendungszweck</span>
+          <div class="purpose-grid" id="purposeGrid" role="group" aria-label="Verwendungszweck des Gerüsts">
+            <button type="button" class="purpose-btn" data-value="fassade" aria-pressed="false">
+              <span class="p-icon" aria-hidden="true">🏠</span>Fassadenarbeiten
             </button>
-            <button type="button" class="purpose-btn" data-value="dach">
-              <span class="p-icon">🏚</span>Dacharbeiten
+            <button type="button" class="purpose-btn" data-value="dach" aria-pressed="false">
+              <span class="p-icon" aria-hidden="true">🏚</span>Dacharbeiten
             </button>
-            <button type="button" class="purpose-btn" data-value="renovierung">
-              <span class="p-icon">🔨</span>Renovierung / Sanierung
+            <button type="button" class="purpose-btn" data-value="renovierung" aria-pressed="false">
+              <span class="p-icon" aria-hidden="true">🔨</span>Renovierung
             </button>
-            <button type="button" class="purpose-btn" data-value="neubau">
-              <span class="p-icon">🏗</span>Neubau
+            <button type="button" class="purpose-btn" data-value="neubau" aria-pressed="false">
+              <span class="p-icon" aria-hidden="true">🏗</span>Neubau
             </button>
-            <button type="button" class="purpose-btn" data-value="industrie">
-              <span class="p-icon">🏭</span>Industrie / Gewerbe
+            <button type="button" class="purpose-btn" data-value="industrie" aria-pressed="false">
+              <span class="p-icon" aria-hidden="true">🏭</span>Industrie
             </button>
-            <button type="button" class="purpose-btn" data-value="sonstiges">
-              <span class="p-icon">📋</span>Sonstiges
+            <button type="button" class="purpose-btn" data-value="sonstiges" aria-pressed="false">
+              <span class="p-icon" aria-hidden="true">📋</span>Sonstiges
             </button>
           </div>
           <input type="hidden" id="purposeValue" name="zweck" />
         </div>
 
-        <!-- Schritt 2: Maße -->
         <div class="calc-step">
-          <label>2. Maße des Gerüsts</label>
+          <span class="step-label">2. Maße des Gerüsts</span>
           <div class="form-row">
             <div class="field">
               <label for="hoehe">Höhe (m)</label>
@@ -605,9 +617,8 @@
           </div>
         </div>
 
-        <!-- Schritt 3: Dauer -->
         <div class="calc-step">
-          <label>3. Geplante Standzeit</label>
+          <span class="step-label">3. Standzeit &amp; Termin</span>
           <div class="form-row">
             <div class="field">
               <label for="dauer">Dauer (Wochen)</label>
@@ -620,50 +631,46 @@
           </div>
         </div>
 
-        <!-- Indikative Kostenschätzung -->
-        <div class="calc-result" id="calcResult">
+        <div class="calc-result" id="calcResult" role="status" aria-live="polite">
           <div class="res-head">Richtwert Mietkosten (ca.)</div>
           <div class="res-val" id="resVal">–</div>
           <div class="res-note">Unverbindliche Schätzung · exkl. Auf-/Abbau · inkl. MwSt.<br>Exaktes Angebot nach Vor-Ort-Besichtigung.</div>
         </div>
 
-        <!-- Schritt 4: Kontaktdaten -->
         <div class="calc-step">
-          <label>4. Ihre Kontaktdaten</label>
+          <span class="step-label">4. Ihre Kontaktdaten</span>
           <div class="form-row">
             <div class="field">
-              <label for="name">Name *</label>
-              <input type="text" id="name" name="name" placeholder="Max Mustermann" required />
+              <label for="name">Name <abbr title="Pflichtfeld">*</abbr></label>
+              <input type="text" id="name" name="name" placeholder="Max Mustermann" required autocomplete="name" />
             </div>
             <div class="field">
-              <label for="telefon">Telefon *</label>
-              <input type="tel" id="telefon" name="telefon" placeholder="+49 4122 …" required />
+              <label for="telefon">Telefon <abbr title="Pflichtfeld">*</abbr></label>
+              <input type="tel" id="telefon" name="telefon" placeholder="+49 4122 …" required autocomplete="tel" />
             </div>
           </div>
-          <div class="field" style="margin-top:12px;">
+          <div class="field" style="margin-top:14px;">
             <label for="email">E-Mail</label>
-            <input type="email" id="email" name="email" placeholder="max@beispiel.de" />
+            <input type="email" id="email" name="email" placeholder="max@beispiel.de" autocomplete="email" />
           </div>
-          <div class="field" style="margin-top:12px;">
+          <div class="field" style="margin-top:14px;">
             <label for="nachricht">Anmerkungen</label>
             <textarea id="nachricht" name="nachricht" placeholder="Besonderheiten, Adresse der Baustelle …"></textarea>
           </div>
         </div>
 
-        <!-- DSGVO-Checkbox -->
-        <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:20px;">
-          <input type="checkbox" id="datenschutz" name="datenschutz" style="margin-top:3px;width:18px;height:18px;flex-shrink:0;" required />
-          <label for="datenschutz" style="font-size:13px;color:var(--text-2);line-height:1.5;cursor:pointer;">
-            Ich habe die <a href="#datenschutz-detail" style="color:var(--blue-light);">Datenschutzerklärung</a> gelesen und erkläre mich damit einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verarbeitet werden. Die Daten werden ausschließlich für die Kontaktaufnahme genutzt und nicht an Dritte weitergegeben. *
+        <div class="check-row">
+          <input type="checkbox" id="datenschutz" name="datenschutz" required />
+          <label for="datenschutz">
+            Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und erkläre mich damit einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verarbeitet werden. Die Daten werden ausschließlich für die Kontaktaufnahme genutzt und nicht an Dritte weitergegeben. <abbr title="Pflichtfeld">*</abbr>
           </label>
         </div>
 
-        <button type="submit" class="submit-btn" id="submitBtn">📩 Angebot anfordern</button>
-        <p class="dsgvo-note">* Pflichtfeld · Keine Cookies, kein Tracking · Datenverarbeitung gem. Art. 6 Abs. 1 lit. b DSGVO</p>
+        <button type="submit" class="submit-btn">Angebot anfordern</button>
+        <p class="dsgvo-note">* Pflichtfeld · Keine Cookies, kein Tracking · Verarbeitung gem. Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO</p>
       </form>
-
-      <div class="success-msg" id="successMsg">
-        ✅ Vielen Dank! Wir melden uns innerhalb eines Werktages bei Ihnen.
+      <div class="success-msg" id="successMsg" role="alert">
+        Vielen Dank! Wir melden uns innerhalb eines Werktages bei Ihnen.
       </div>
     </div>
   </div>
@@ -674,15 +681,15 @@
   <div class="section-inner">
     <div class="about-grid">
       <div class="about-visual">
-        <div class="big-icon">🏗</div>
-        <div>Nord Gerüstbau GmbH<br>Tornesch, Schleswig-Holstein</div>
-        <div class="since">Familienbetrieb seit 2019</div>
+        <p class="about-visual-headline">Nord Gerüstbau GmbH<br>Tornesch, Schleswig-Holstein</p>
+        <p class="about-visual-sub">Ihr Gerüstbauer für Norddeutschland</p>
+        <span class="since">Familienbetrieb seit 2019</span>
       </div>
       <div>
         <span class="section-label">Über uns</span>
         <h2>Klein im Team,<br>groß im Einsatz</h2>
         <p style="color:var(--text-2);margin-bottom:16px;">Als kleiner Familienbetrieb aus Tornesch versorgen wir seit 2019 private und gewerbliche Kunden in Norddeutschland mit maßgeschneiderten Gerüstlösungen. Für uns ist Gerüstbau mehr als Aufstellen und Vermieten – es geht um die individuelle Analyse und Umsetzung Ihres Projekts.</p>
-        <p style="color:var(--text-2);margin-bottom:24px;">Wichtige Erfolgsfaktoren sind für uns fachliche Kompetenz, Erfahrung, Kommunikation – und vor allem der menschliche Faktor. Denn nur so können wir Erwartungen gewissenhaft, herausragend und termingerecht erfüllen.</p>
+        <p style="color:var(--text-2);margin-bottom:24px;">Wichtige Erfolgsfaktoren sind fachliche Kompetenz, Erfahrung, Kommunikation – und der menschliche Faktor. Nur so können wir Erwartungen gewissenhaft, herausragend und termingerecht erfüllen.</p>
         <div class="norm-badges">
           <span class="norm-badge">VOB/C</span>
           <span class="norm-badge">DIN 12811</span>
@@ -703,117 +710,107 @@
     <div class="kontakt-grid">
       <div>
         <div class="info-card">
-          <div class="info-icon">📍</div>
+          <div class="info-icon" aria-hidden="true">📍</div>
           <div>
             <h4>Adresse</h4>
             <p>Nord Gerüstbau GmbH<br>Tornesch, Schleswig-Holstein</p>
           </div>
         </div>
         <div class="info-card">
-          <div class="info-icon">🕘</div>
+          <div class="info-icon" aria-hidden="true">🕘</div>
           <div>
             <h4>Öffnungszeiten</h4>
             <p>Mo – Fr: 09:00 – 18:00 Uhr<br>Sa – So: Geschlossen</p>
           </div>
         </div>
         <div class="info-card">
-          <div class="info-icon">🌐</div>
+          <div class="info-icon" aria-hidden="true">🌐</div>
           <div>
             <h4>Website</h4>
             <p><a href="https://www.nord-geruestbau.de" target="_blank" rel="noopener">www.nord-geruestbau.de</a></p>
           </div>
         </div>
-        <p style="font-size:13px;color:var(--gray-3);margin-top:8px;">Für schnelle Anfragen empfehlen wir das Formular links – wir antworten innerhalb eines Werktages.</p>
+        <p style="font-size:13px;color:var(--gray-3);margin-top:4px;">Für schnelle Anfragen empfehlen wir das Formular rechts – wir antworten innerhalb eines Werktages.</p>
       </div>
+
       <div>
-        <div class="calc-wrap" style="background:var(--gray-1);">
+        <div class="calc-wrap">
           <form id="contactForm" novalidate>
             <div class="field" style="margin-bottom:14px;">
-              <label for="cName">Name *</label>
-              <input type="text" id="cName" name="name" placeholder="Max Mustermann" required />
+              <label for="cName">Name <abbr title="Pflichtfeld">*</abbr></label>
+              <input type="text" id="cName" name="name" placeholder="Max Mustermann" required autocomplete="name" />
             </div>
             <div class="field" style="margin-bottom:14px;">
-              <label for="cTel">Telefon *</label>
-              <input type="tel" id="cTel" name="telefon" placeholder="+49 4122 …" required />
+              <label for="cTel">Telefon <abbr title="Pflichtfeld">*</abbr></label>
+              <input type="tel" id="cTel" name="telefon" placeholder="+49 4122 …" required autocomplete="tel" />
             </div>
             <div class="field" style="margin-bottom:14px;">
               <label for="cMsg">Nachricht</label>
               <textarea id="cMsg" name="nachricht" placeholder="Ihr Anliegen …"></textarea>
             </div>
-            <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:16px;">
-              <input type="checkbox" id="cDsgvo" name="datenschutz" style="margin-top:3px;width:18px;height:18px;flex-shrink:0;" required />
-              <label for="cDsgvo" style="font-size:12px;color:var(--text-2);cursor:pointer;">
-                Ich habe die <a href="#datenschutz-detail" style="color:var(--blue-light);">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zu. *
+            <div class="check-row">
+              <input type="checkbox" id="cDsgvo" name="datenschutz" required />
+              <label for="cDsgvo">
+                Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zu. <abbr title="Pflichtfeld">*</abbr>
               </label>
             </div>
             <button type="submit" class="submit-btn">Nachricht senden</button>
           </form>
-          <div class="success-msg" id="contactSuccess">✅ Nachricht erhalten! Wir melden uns bald.</div>
+          <div class="success-msg" id="contactSuccess" role="alert">
+            Nachricht erhalten! Wir melden uns bald.
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── IMPRESSUM & DATENSCHUTZ ── -->
-<div class="legal-section" id="datenschutz-detail">
-  <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
-
-    <details>
-      <summary>Impressum</summary>
-      <div class="legal-content">
-        <h3>Angaben gemäß § 5 TMG</h3>
-        <p>Nord Gerüstbau GmbH<br>Tornesch, Schleswig-Holstein</p>
-        <h3>Vertreten durch</h3>
-        <p>Geschäftsführung Nord Gerüstbau GmbH</p>
-        <h3>Kontakt</h3>
-        <p>Website: <a href="https://www.nord-geruestbau.de">www.nord-geruestbau.de</a></p>
-        <h3>Haftungshinweis</h3>
-        <p>Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>Datenschutzerklärung</summary>
-      <div class="legal-content">
-        <h3>1. Verantwortliche Stelle</h3>
-        <p>Nord Gerüstbau GmbH, Tornesch, Schleswig-Holstein<br>Website: <a href="https://www.nord-geruestbau.de">www.nord-geruestbau.de</a></p>
-
-        <h3>2. Erhobene Daten &amp; Zweck</h3>
-        <p>Diese Website erhebt <strong>keine</strong> personenbezogenen Daten ohne Ihre aktive Eingabe. Es werden keine Cookies gesetzt, kein Tracking-Dienst (Google Analytics, Meta Pixel o.ä.) eingebunden und keine Daten an Dritte übermittelt.</p>
-        <p>Wenn Sie das Kontakt- oder Angebotsformular ausfüllen, verarbeiten wir die von Ihnen eingegebenen Daten (Name, Telefon, ggf. E-Mail und Nachricht) ausschließlich zur Bearbeitung Ihrer Anfrage. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen).</p>
-
-        <h3>3. Keine Cookies</h3>
-        <p>Diese Website setzt keine Cookies – weder technisch notwendige noch analytische oder Marketing-Cookies. Ein Cookie-Banner ist daher nicht erforderlich.</p>
-
-        <h3>4. Externe Ressourcen</h3>
-        <p>Diese Seite lädt ausschließlich Ressourcen vom eigenen Server. Es werden keine externen Schriften, Skripte oder CDNs eingebunden, die eine IP-Adressenübermittlung an Dritte verursachen.</p>
-
-        <h3>5. Ihre Rechte</h3>
-        <p>Sie haben das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18) und Datenübertragbarkeit (Art. 20). Zur Ausübung wenden Sie sich an uns über die im Impressum genannten Kontaktdaten.</p>
-
-        <h3>6. Beschwerderecht</h3>
-        <p>Sie haben das Recht, sich bei der zuständigen Datenschutzbehörde (Unabhängiges Landeszentrum für Datenschutz Schleswig-Holstein, <a href="https://www.datenschutzzentrum.de" target="_blank" rel="noopener noreferrer">www.datenschutzzentrum.de</a>) zu beschweren.</p>
-
-        <h3>7. Stand</h3>
-        <p>August 2026</p>
-      </div>
-    </details>
-
+<!-- ── DATENSCHUTZ (accordion) ── -->
+<section id="datenschutz-section">
+  <div class="section-inner">
+    <span class="section-label">Rechtliches</span>
+    <h2>Datenschutz</h2>
+    <div class="legal-wrap" style="margin-top:32px;">
+      <details>
+        <summary>Datenschutzerklärung</summary>
+        <div class="legal-content">
+          <h3>1. Verantwortliche Stelle</h3>
+          <p>Nord Gerüstbau GmbH, Tornesch, Schleswig-Holstein<br>Website: <a href="https://www.nord-geruestbau.de">www.nord-geruestbau.de</a></p>
+          <h3>2. Erhobene Daten &amp; Zweck</h3>
+          <p>Diese Website erhebt <strong>keine</strong> personenbezogenen Daten ohne Ihre aktive Eingabe. Es werden keine Cookies gesetzt, kein Tracking-Dienst eingebunden und keine Daten an Dritte übermittelt.</p>
+          <p>Wenn Sie das Kontakt- oder Angebotsformular ausfüllen, verarbeiten wir Ihre Eingaben (Name, Telefon, ggf. E-Mail und Nachricht) ausschließlich zur Bearbeitung Ihrer Anfrage. Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO.</p>
+          <h3>3. Keine Cookies</h3>
+          <p>Diese Website setzt keine Cookies – weder technisch notwendige noch analytische oder Marketing-Cookies.</p>
+          <h3>4. Externe Ressourcen</h3>
+          <p>Diese Seite lädt ausschließlich Ressourcen vom eigenen Server. Es werden keine externen Schriften, Skripte oder CDNs eingebunden.</p>
+          <h3>5. Ihre Rechte</h3>
+          <p>Sie haben das Recht auf Auskunft (Art.&nbsp;15), Berichtigung (Art.&nbsp;16), Löschung (Art.&nbsp;17), Einschränkung (Art.&nbsp;18) und Datenübertragbarkeit (Art.&nbsp;20 DSGVO). Zur Ausübung wenden Sie sich über die im <a href="impressum.html">Impressum</a> genannten Kontaktdaten an uns.</p>
+          <h3>6. Beschwerderecht</h3>
+          <p>Zuständige Aufsichtsbehörde: Unabhängiges Landeszentrum für Datenschutz Schleswig-Holstein, <a href="https://www.datenschutzzentrum.de" target="_blank" rel="noopener noreferrer">www.datenschutzzentrum.de</a></p>
+          <h3>7. Stand</h3>
+          <p>August 2026</p>
+        </div>
+      </details>
+    </div>
   </div>
-</div>
+</section>
 
 <!-- ── FOOTER ── -->
 <footer>
   <div class="footer-inner">
-    <nav class="footer-nav">
+    <nav class="footer-nav" aria-label="Footer-Navigation">
       <a href="#leistungen">Leistungen</a>
       <a href="#kalkulator">Kalkulator</a>
       <a href="#ueber">Über uns</a>
       <a href="#kontakt">Kontakt</a>
-      <a href="#datenschutz-detail">Impressum &amp; Datenschutz</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
     </nav>
-    <div class="footer-copy">© 2026 Nord Gerüstbau GmbH · Tornesch · Alle Rechte vorbehalten<br>Keine Cookies · Kein Tracking · DSGVO-konform</div>
+    <hr class="footer-divider" />
+    <p class="footer-copy">
+      &copy; 2026 Nord Gerüstbau GmbH &middot; Tornesch &middot; Alle Rechte vorbehalten<br>
+      Keine Cookies &middot; Kein Tracking &middot; DSGVO-konform
+    </p>
   </div>
 </footer>
 
@@ -821,86 +818,72 @@
 (function () {
   'use strict';
 
-  // ── Purpose selector ──
-  var purposeGrid = document.getElementById('purposeGrid');
-  var purposeValue = document.getElementById('purposeValue');
-  purposeGrid.querySelectorAll('.purpose-btn').forEach(function (btn) {
+  /* ── Purpose selector ── */
+  var grid = document.getElementById('purposeGrid');
+  var purposeInput = document.getElementById('purposeValue');
+  grid.querySelectorAll('.purpose-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      purposeGrid.querySelectorAll('.purpose-btn').forEach(function (b) { b.classList.remove('selected'); });
+      grid.querySelectorAll('.purpose-btn').forEach(function (b) {
+        b.classList.remove('selected');
+        b.setAttribute('aria-pressed', 'false');
+      });
       btn.classList.add('selected');
-      purposeValue.value = btn.dataset.value;
+      btn.setAttribute('aria-pressed', 'true');
+      purposeInput.value = btn.dataset.value;
       updateEstimate();
     });
   });
 
-  // ── Cost estimate ──
+  /* ── Cost estimate ── */
   var hoeheEl  = document.getElementById('hoehe');
   var laengeEl = document.getElementById('laenge');
   var dauerEl  = document.getElementById('dauer');
   var calcResult = document.getElementById('calcResult');
-  var resVal = document.getElementById('resVal');
+  var resVal   = document.getElementById('resVal');
 
   function updateEstimate() {
     var h = parseFloat(hoeheEl.value) || 0;
     var l = parseFloat(laengeEl.value) || 0;
     var d = parseFloat(dauerEl.value) || 0;
-    if (h <= 0 || l <= 0 || d <= 0) {
-      calcResult.classList.remove('visible');
-      return;
-    }
+    if (h <= 0 || l <= 0 || d <= 0) { calcResult.classList.remove('visible'); return; }
     var flaeche = h * l;
-    // Rough indicative rate: ~2.80 €/m²/Woche Miete + einmalig ~8 €/m² Auf/Abbau
-    var miete  = flaeche * 2.80 * d * 1.19;
-    var gesamt = Math.round(miete / 50) * 50;
-    var von    = Math.round(gesamt * 0.8);
-    var bis    = Math.round(gesamt * 1.3);
+    var miete   = flaeche * 2.80 * d * 1.19;
+    var mid     = Math.round(miete / 50) * 50;
+    var von     = Math.round(mid * 0.8 / 50) * 50;
+    var bis     = Math.round(mid * 1.3 / 50) * 50;
     resVal.textContent = von.toLocaleString('de-DE') + ' – ' + bis.toLocaleString('de-DE') + ' €';
     calcResult.classList.add('visible');
   }
 
-  [hoeheEl, laengeEl, dauerEl].forEach(function (el) {
-    el.addEventListener('input', updateEstimate);
-  });
+  [hoeheEl, laengeEl, dauerEl].forEach(function (el) { el.addEventListener('input', updateEstimate); });
 
-  // ── Form submission (mailto fallback — no backend, DSGVO-safe) ──
-  function handleSubmit(form, successId) {
+  /* ── Form submit (mailto fallback) ── */
+  function handleForm(formId, successId) {
+    var form = document.getElementById(formId);
+    var msg  = document.getElementById(successId);
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var dsgvo = form.querySelector('[name="datenschutz"]');
-      if (!dsgvo.checked) {
-        dsgvo.focus();
-        return;
-      }
-      var required = form.querySelectorAll('[required]');
-      var valid = true;
-      required.forEach(function (el) {
-        if (el.type === 'checkbox' ? !el.checked : !el.value.trim()) {
-          el.style.borderColor = '#e53e3e';
-          valid = false;
-        } else {
-          el.style.borderColor = '';
-        }
+      var ok = true;
+      form.querySelectorAll('[required]').forEach(function (el) {
+        var invalid = el.type === 'checkbox' ? !el.checked : !el.value.trim();
+        el.style.borderColor = invalid ? '#c0392b' : '';
+        if (invalid) ok = false;
       });
-      if (!valid) return;
-
-      // Build mailto as graceful fallback (no server needed)
-      var data = new FormData(form);
-      var lines = [];
-      data.forEach(function (v, k) {
-        if (k !== 'datenschutz' && v) lines.push(k + ': ' + v);
+      if (!ok) return;
+      var parts = [];
+      new FormData(form).forEach(function (v, k) {
+        if (k !== 'datenschutz' && v) parts.push(k + ': ' + v);
       });
-      var subject = encodeURIComponent('Gerüst-Anfrage über Website');
-      var body    = encodeURIComponent(lines.join('\n'));
-      window.location.href = 'mailto:info@nord-geruestbau.de?subject=' + subject + '&body=' + body;
-
+      window.location.href = 'mailto:info@nord-geruestbau.de'
+        + '?subject=' + encodeURIComponent('Anfrage über Website')
+        + '&body='    + encodeURIComponent(parts.join('\n'));
       form.style.display = 'none';
-      document.getElementById(successId).classList.add('visible');
+      msg.classList.add('visible');
     });
   }
 
-  handleSubmit(document.getElementById('calcForm'),    'successMsg');
-  handleSubmit(document.getElementById('contactForm'), 'contactSuccess');
-
+  handleForm('calcForm',    'successMsg');
+  handleForm('contactForm', 'contactSuccess');
 })();
 </script>
 </body>
