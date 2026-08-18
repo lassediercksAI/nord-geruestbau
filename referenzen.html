@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Referenzen – Nord Gerüstbau GmbH</title>
+  <meta name="description" content="Einblick in unsere abgeschlossenen Gerüstbauprojekte – Fassaden, Dächer, Industrie und mehr. Jährlich 100–200 Aufträge in Norddeutschland." />
+  <meta name="robots" content="index, follow" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue:       #1a3a5c;
+      --blue-mid:   #1e4976;
+      --blue-light: #2a6094;
+      --accent:     #a84800;
+      --accent-dk:  #8c3c00;
+      --accent-on-dark: #f07020;
+      --bg:         #f7f9fc;
+      --white:      #ffffff;
+      --gray-1:     #f0f4f8;
+      --gray-2:     #d8e2ec;
+      --gray-3:     #64748b;
+      --text:       #1a2535;
+      --text-2:     #334155;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg); color: var(--text);
+      line-height: 1.65; font-size: 16px;
+    }
+    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--blue);
+      box-shadow: 0 2px 12px rgba(0,0,0,.22);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .logo { font-size: 17px; font-weight: 700; color: var(--white); text-decoration: none; }
+    .back-link {
+      font-size: 14px; font-weight: 500; color: rgba(255,255,255,.8);
+      text-decoration: none; transition: color .15s;
+    }
+    .back-link:hover { color: var(--white); }
+    .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
+    .nav-links a {
+      color: rgba(255,255,255,.82); text-decoration: none;
+      font-size: 14px; font-weight: 500; transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--accent-on-dark); }
+    .nav-cta {
+      background: var(--accent) !important; color: var(--white) !important;
+      padding: 8px 18px; border-radius: 8px; font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--accent-dk) !important; }
+
+    /* ── HERO ── */
+    .page-hero {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 55%, var(--blue-light) 100%);
+      color: var(--white); padding: 72px 24px 60px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .page-hero-inner { position: relative; max-width: 680px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22);
+      color: rgba(255,255,255,.92); font-size: 12px; font-weight: 700;
+      padding: 4px 14px; border-radius: 20px;
+      margin-bottom: 20px; letter-spacing: .06em; text-transform: uppercase;
+    }
+    .page-hero h1 {
+      font-size: clamp(28px, 4.5vw, 46px); font-weight: 800;
+      line-height: 1.15; letter-spacing: -.02em; margin-bottom: 16px;
+    }
+    .page-hero h1 span { color: var(--accent-on-dark); }
+    .page-hero p { font-size: 17px; color: rgba(255,255,255,.82); max-width: 520px; margin: 0 auto; }
+    .hero-stats {
+      display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;
+      margin-top: 48px; padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,.15);
+    }
+    .hero-stat .num { font-size: 26px; font-weight: 800; color: var(--accent-on-dark); line-height: 1; }
+    .hero-stat .lbl { font-size: 13px; color: rgba(255,255,255,.7); margin-top: 4px; }
+
+    /* ── GALLERY ── */
+    .gallery-section { padding: 64px 24px 80px; }
+    .gallery-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      display: inline-block; font-size: 11px; font-weight: 800;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 10px;
+    }
+    h2 {
+      font-size: clamp(22px, 3vw, 32px); font-weight: 800;
+      color: var(--blue); margin-bottom: 10px; letter-spacing: -.02em;
+    }
+    .gallery-lead { font-size: 16px; color: var(--text-2); margin-bottom: 40px; }
+
+    /* CSS columns masonry */
+    .masonry {
+      columns: 3 300px;
+      column-gap: 16px;
+    }
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 16px;
+      border-radius: 12px; overflow: hidden;
+      background: var(--gray-2);
+      /* Lightbox trigger */
+      cursor: zoom-in;
+    }
+    .masonry-item img {
+      display: block; width: 100%; height: auto;
+      transition: transform .3s ease;
+    }
+    .masonry-item:hover img { transform: scale(1.03); }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(10,20,35,.92);
+      align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw; max-height: 90vh;
+      border-radius: 8px; object-fit: contain;
+      box-shadow: 0 24px 60px rgba(0,0,0,.5);
+    }
+    .lb-close {
+      position: absolute; top: 20px; right: 28px;
+      background: none; border: none; color: var(--white);
+      font-size: 36px; cursor: pointer; line-height: 1;
+      opacity: .8; transition: opacity .15s;
+    }
+    .lb-close:hover { opacity: 1; }
+    .lb-prev, .lb-next {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+      color: var(--white); font-size: 28px; padding: 12px 18px;
+      cursor: pointer; border-radius: 8px; line-height: 1;
+      transition: background .15s;
+    }
+    .lb-prev { left: 20px; }
+    .lb-next { right: 20px; }
+    .lb-prev:hover, .lb-next:hover { background: rgba(255,255,255,.2); }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--blue); color: var(--white);
+      padding: 64px 24px; text-align: center;
+    }
+    .cta-inner { max-width: 560px; margin: 0 auto; }
+    .cta-section h2 { color: var(--white); margin-bottom: 14px; }
+    .cta-section p { color: rgba(255,255,255,.8); font-size: 17px; margin-bottom: 32px; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: var(--white);
+      padding: 14px 32px; border-radius: 10px;
+      font-weight: 700; font-size: 15px;
+      text-decoration: none; transition: background .15s;
+    }
+    .btn-primary:hover { background: var(--accent-dk); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--blue); border-top: 1px solid rgba(255,255,255,.08); padding: 28px 24px; }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+    }
+    .footer-nav { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+    .footer-nav a {
+      color: rgba(255,255,255,.72); text-decoration: none;
+      font-size: 13px; font-weight: 500; background: none; transition: color .15s;
+    }
+    .footer-nav a:hover { color: var(--accent-on-dark); }
+    .footer-divider { width: 100%; border: none; border-top: 1px solid rgba(255,255,255,.1); }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,.4); text-align: center; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">Nord Gerüstbau GmbH</a>
+    <ul class="nav-links">
+      <li><a href="/#leistungen">Leistungen</a></li>
+      <li><a href="/#kalkulator">Kalkulator</a></li>
+      <li><a href="/#ueber">Über uns</a></li>
+      <li><a href="/#kontakt" class="nav-cta">Angebot anfragen</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<header class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-badge">Ausgewählte Projekte</div>
+    <h1>Unsere <span>Referenzen</span></h1>
+    <p>Hier erhalten Sie einen Einblick in unsere abgeschlossenen Gerüstbauprojekte – von privaten Einfamilienhäusern bis zu gewerblichen Großbaustellen.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num">100–200</div>
+        <div class="lbl">Aufträge pro Jahr</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">seit 2019</div>
+        <div class="lbl">in Norddeutschland</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">privat &amp; gewerblich</div>
+        <div class="lbl">Auftraggeber</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── GALLERY ── -->
+<section class="gallery-section">
+  <div class="gallery-inner">
+    <span class="section-label">Bisherige Projekte</span>
+    <h2>Einblick in unsere Arbeit</h2>
+    <p class="gallery-lead">Zu unserem Kundenstamm gehören neben Privatpersonen auch kleine und mittelständische Unternehmen sowie öffentliche Auftraggeber.</p>
+
+    <div class="masonry" id="gallery">
+      <div class="masonry-item" data-index="0">
+        <img src="https://www.nord-geruestbau.de/wp-content/uploads/go-x/u/0052d88e-b121-4b3f-8590-2006369e01c5/image-455x607.jpg"
+             alt="Gerüstbauprojekt – Fassade" loading="lazy" width="455" height="607" />
+      </div>
+      <div class="masonry-item" data-index="1">
+        <img src="https://www.nord-geruestbau.de/wp-content/uploads/go-x/u/06beb776-946a-4cac-a711-941f7ee31058/image-455x936.jpg"
+             alt="Gerüstbauprojekt – Hochgerüst" loading="lazy" width="455" height="936" />
+      </div>
+      <div class="masonry-item" data-index="2">
+        <img src="https://www.nord-geruestbau.de/wp-content/uploads/go-x/u/1a90b91c-7a31-4274-9bbe-8e7b420ac83a/image-607x455.jpg"
+             alt="Gerüstbauprojekt – Dacharbeiten" loading="lazy" width="607" height="455" />
+      </div>
+      <div class="masonry-item" data-index="3">
+        <img src="https://www.nord-geruestbau.de/wp-content/uploads/go-x/u/1aa6d5a1-4ebc-4b3a-b246-b8a9bfbf8a3f/image-455x607.jpg"
+             alt="Gerüstbauprojekt" loading="lazy" width="455" height="607" />
+      </div>
+      <div class="masonry-item" data-index="4">
+        <img src="https://www.nord-geruestbau.de/wp-content/uploads/go-x/u/1ba46b70-5538-4d32-bb8f-647bcd1c3f81/image-455x936.jpg"
+             alt="Gerüstbauprojekt – Hochbau" loading="lazy" width="455" height="936" />
+      </div>
+      <div class="masonry-item" data-index="5">
+        <img src="https://www.nord-geruestbau.de/wp-content/uploads/go-x/u/26a43bf6-e689-4026-9664-f944e81efda1/image-455x607.jpg"
+             alt="Gerüstbauprojekt" loading="lazy" width="455" height="607" />
+      </div>
+      <div class="masonry-item" data-index="6">
+        <img src="https://www.nord-geruestbau.de/wp-content/uploads/go-x/u/28ea45ae-7ffd-40bd-bb54-fe15ebcd2e9e/image-455x607.jpg"
+             alt="Gerüstbauprojekt" loading="lazy" width="455" height="607" />
+      </div>
+      <div class="masonry-item" data-index="7">
+        <img src="https://www.nord-geruestbau.de/wp-content/uploads/go-x/u/2e988c88-4325-4a48-8549-22e2737e2920/image-455x607.jpg"
+             alt="Gerüstbauprojekt – Sanierung" loading="lazy" width="455" height="607" />
+      </div>
+      <div class="masonry-item" data-index="8">
+        <img src="https://www.nord-geruestbau.de/wp-content/uploads/go-x/u/2fbaba6a-87c1-42fb-b43a-f0d87dac0623/image-607x455.jpg"
+             alt="Gerüstbauprojekt – Querformat" loading="lazy" width="607" height="455" />
+      </div>
+      <div class="masonry-item" data-index="9">
+        <img src="https://www.nord-geruestbau.de/wp-content/uploads/go-x/u/3711f6bc-e256-460f-8136-aeae74d0976f/image-455x607.jpg"
+             alt="Gerüstbauprojekt" loading="lazy" width="455" height="607" />
+      </div>
+      <div class="masonry-item" data-index="10">
+        <img src="https://www.nord-geruestbau.de/wp-content/uploads/go-x/u/3f33d073-f023-459b-9c8d-ebaded8f535e/image-607x455.jpg"
+             alt="Gerüstbauprojekt – Außenbereich" loading="lazy" width="607" height="455" />
+      </div>
+      <div class="masonry-item" data-index="11">
+        <img src="https://www.nord-geruestbau.de/wp-content/uploads/go-x/u/6fb1030c-ee73-43da-8d8b-ff1bb46833ec/image-607x455.jpg"
+             alt="Gerüstbauprojekt" loading="lazy" width="607" height="455" />
+      </div>
+      <div class="masonry-item" data-index="12">
+        <img src="https://www.nord-geruestbau.de/wp-content/uploads/go-x/u/8195fca1-45ad-4486-b74a-546d8704b7be/image-455x607.jpg"
+             alt="Gerüstbauprojekt" loading="lazy" width="455" height="607" />
+      </div>
+      <div class="masonry-item" data-index="13">
+        <img src="https://www.nord-geruestbau.de/wp-content/uploads/go-x/u/913be4cf-bcd7-47be-a5e8-40b2d81e2f4c/image-607x455.jpg"
+             alt="Gerüstbauprojekt – Industriebereich" loading="lazy" width="607" height="455" />
+      </div>
+      <div class="masonry-item" data-index="14">
+        <img src="https://www.nord-geruestbau.de/wp-content/uploads/go-x/u/94f22bc2-6439-4278-9978-f03e749aa259/image-455x607.jpg"
+             alt="Gerüstbauprojekt" loading="lazy" width="455" height="607" />
+      </div>
+      <div class="masonry-item" data-index="15">
+        <img src="https://www.nord-geruestbau.de/wp-content/uploads/go-x/u/951f508d-2341-4190-9028-53ec455b1ec1/image-455x936.jpg"
+             alt="Gerüstbauprojekt – Hochbau" loading="lazy" width="455" height="936" />
+      </div>
+      <div class="masonry-item" data-index="16">
+        <img src="https://www.nord-geruestbau.de/wp-content/uploads/go-x/u/9f2c0da9-6f76-44ce-959d-0a1c8a01ea7b/image-607x455.jpg"
+             alt="Gerüstbauprojekt" loading="lazy" width="607" height="455" />
+      </div>
+      <div class="masonry-item" data-index="17">
+        <img src="https://www.nord-geruestbau.de/wp-content/uploads/go-x/u/a1690b5f-72aa-408b-98ad-687dcd6b91be/image-455x607.jpg"
+             alt="Gerüstbauprojekt" loading="lazy" width="455" height="607" />
+      </div>
+      <div class="masonry-item" data-index="18">
+        <img src="https://www.nord-geruestbau.de/wp-content/uploads/go-x/u/b82c0563-be69-4155-b409-f57f7fecf0a1/image-455x937.jpg"
+             alt="Gerüstbauprojekt – Gebäude" loading="lazy" width="455" height="937" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LIGHTBOX ── -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Bildbetrachter">
+  <button class="lb-close" id="lbClose" aria-label="Schließen">&times;</button>
+  <button class="lb-prev" id="lbPrev" aria-label="Vorheriges Bild">&#8249;</button>
+  <img id="lbImg" src="" alt="" />
+  <button class="lb-next" id="lbNext" aria-label="Nächstes Bild">&#8250;</button>
+</div>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2>Ihr Projekt könnte das nächste sein</h2>
+    <p>Sprechen Sie uns an – wir erstellen Ihnen innerhalb von 24 Stunden ein unverbindliches Angebot.</p>
+    <a href="/#kalkulator" class="btn-primary">Kosten berechnen</a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <nav class="footer-nav" aria-label="Footer-Navigation">
+      <a href="/">Startseite</a>
+      <a href="/#leistungen">Leistungen</a>
+      <a href="/#kalkulator">Kalkulator</a>
+      <a href="/#kontakt">Kontakt</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+    <hr class="footer-divider" />
+    <p class="footer-copy">&copy; 2026 Nord Gerüstbau GmbH &middot; Tornesch &middot; Alle Rechte vorbehalten</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var items  = Array.from(document.querySelectorAll('.masonry-item'));
+  var imgs   = items.map(function (el) { return el.querySelector('img'); });
+  var lb     = document.getElementById('lightbox');
+  var lbImg  = document.getElementById('lbImg');
+  var cur    = 0;
+
+  function open(idx) {
+    cur = idx;
+    lbImg.src = imgs[idx].src;
+    lbImg.alt = imgs[idx].alt;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('lbClose').focus();
+  }
+
+  function close() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    items[cur].querySelector('img').focus();
+  }
+
+  function prev() { open((cur - 1 + imgs.length) % imgs.length); }
+  function next() { open((cur + 1) % imgs.length); }
+
+  items.forEach(function (el, i) {
+    el.addEventListener('click', function () { open(i); });
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('role', 'button');
+    el.setAttribute('aria-label', 'Bild vergrößern');
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
+    });
+  });
+
+  document.getElementById('lbClose').addEventListener('click', close);
+  document.getElementById('lbPrev').addEventListener('click', prev);
+  document.getElementById('lbNext').addEventListener('click', next);
+
+  lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+
+  document.addEventListener('keydown', function (e) {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape')     close();
+    if (e.key === 'ArrowLeft')  prev();
+    if (e.key === 'ArrowRight') next();
+  });
+})();
+</script>
+</body>
+</html>
